@@ -11,9 +11,15 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="../../css/main.css" />
     <script src="../../js/workspace.js"></script>
+    <script src="../../js/editor.js"></script>
     <style type="text/tailwindcss">
       @theme {
         --color-primary: #f8a698;
@@ -83,9 +89,13 @@
       .inactiveMenuItem {
         @apply text-text-secondary hover:bg-black/5;
       }
+
+      .plumaEditorButton {
+        @apply rounded-md p-1 hover:bg-black/5 cursor-pointer;
+      }
     </style>
   </head>
-  <body onload="init('index')">
+  <body onload="initEditor()">
     <!-- 1. sidebar
     2. header -->
 
@@ -549,7 +559,78 @@
                 </div>
 
                 <!-- Editor -->
-                <div class="border border-gray-200 rounded-lg p-6"></div>
+                <div class="border border-gray-200 rounded-lg py-2">
+                  <div
+                    id="toolbar"
+                    class="flex items-center gap-3 border-b border-gray-200 pb-2"
+                  >
+                    <!-- Add buttons as you would before -->
+
+                    <div class="flex gap-2">
+                      <button id="btnBold" class="plumaEditorButton">
+                        <img
+                          src="../../assets/icons/bold.svg"
+                          alt="bold"
+                          class="size-6"
+                        />
+                      </button>
+                      <button id="btnItalic" class="plumaEditorButton">
+                        <img
+                          src="../../assets/icons/italic.svg"
+                          alt="italic"
+                          class="size-6"
+                        />
+                      </button>
+                      <button id="btnLink" class="plumaEditorButton">
+                        <img
+                          src="../../assets/icons/link-editor.svg"
+                          alt="link-editor"
+                          class="size-6"
+                        />
+                      </button>
+                      <button id="btnOl" class="plumaEditorButton">
+                        <img
+                          src="../../assets/icons/ol.svg"
+                          alt="ol"
+                          class="size-6"
+                        />
+                      </button>
+                      <button id="btnUl" class="plumaEditorButton">
+                        <img
+                          src="../../assets/icons/ul.svg"
+                          alt="ul"
+                          class="size-6"
+                        />
+                      </button>
+                      <button id="btnCodeBlock" class="plumaEditorButton">
+                        <img
+                          src="../../assets/icons/code-block.svg"
+                          alt="code-block"
+                          class="size-6"
+                        />
+                      </button>
+                    </div>
+                    <div class="h-7 w-px bg-gray-200"></div>
+                    <div class="flex gap-2">
+                      <button id="btnUndo" class="plumaEditorButton">
+                        <img
+                          src="../../assets/icons/undo.svg"
+                          alt="undo"
+                          class="size-6"
+                        />
+                      </button>
+                      <button id="btnRedo" class="plumaEditorButton">
+                        <img
+                          src="../../assets/icons/redo.svg"
+                          alt="redo"
+                          class="size-6"
+                        />
+                      </button>
+                    </div>
+                  </div>
+
+                  <div id="editor" class="!mt-0"></div>
+                </div>
 
                 <button class="plumaPrimaryButton">Add Fact Check</button>
 
